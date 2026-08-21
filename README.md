@@ -2,37 +2,38 @@
 
 Standalone multi-agent reference architecture for evidence-aware corporate governance preparation, board-process support, risk review, and decision traceability.
 
-## Complete repository structure
+## Architecture
+
+This repository exposes its capability layers directly:
 
 ```text
-.github/workflows/tests.yml     CI across supported Python versions
-src/agents.py                   specialist agent implementations and manifest
-src/state.py                    shared typed run state
-src/gates.py                    fail-closed human authority gate
-src/orchestrator.py             multi-agent coordination and canonical result
-src/system.py                   compatibility API
-evals/evaluator.py              reference evaluator
-examples/governance_case.json   reproducible offline fixture
-benchmarks/README.md            domain benchmark contract
-docs/ARCHITECTURE.md            architecture and workflow design
-tests/                          system, agent, and architecture tests
-SECURITY.md                     security and responsible-use policy
-CONTRIBUTING.md                 contribution standard
-CITATION.cff                    citation metadata
-CHANGELOG.md                    release history
-LICENSE                         MIT license
+src/
+├── agents/          specialist autonomous roles and manifest
+├── tools/           deterministic callable capabilities
+├── skills/          reusable governance reasoning procedures
+├── memory/          run-scoped memory abstraction
+├── schemas/         canonical contracts
+├── prompts/         behavioral principles
+├── config/          reference configuration
+├── safety/          consequential-action policy
+├── observability/   trace summaries
+├── state.py         shared run state
+├── gates.py         fail-closed approval gate
+├── orchestrator.py  multi-agent coordination
+├── system.py        public API
+└── run.py           standalone CLI
 ```
 
-## Agent team
+### Agents
+Governance Intake Agent, Policy and Charter Agent, Risk and Controls Agent, Board Process Agent, and Evidence Auditor, coordinated by the Governance Orchestrator.
 
-1. Governance Intake Agent
-2. Policy and Charter Agent
-3. Risk and Controls Agent
-4. Board Process Agent
-5. Evidence Auditor
-6. Governance Orchestrator
+### Skills
+Authority mapping, governance risk review, and evidence-gap analysis.
 
-The five specialists are executable roles. The Governance Orchestrator owns shared state, invokes the specialists, records the execution trace, and evaluates the human authority gate.
+### Tools
+Document normalization and decision-record construction. Reference tools are deterministic and side-effect free.
+
+See `docs/AGENTS_TOOLS_SKILLS.md` for the capability model.
 
 ## Quick start
 
