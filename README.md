@@ -11,9 +11,29 @@ Standalone multi-agent reference architecture for evidence-aware corporate gover
 5. Evidence Auditor
 6. Governance Orchestrator
 
-## Engineering principles
+The **actual specialist agent implementations live in [`src/agents.py`](src/agents.py)**. The orchestrated run state and human authority gate live in [`src/system.py`](src/system.py). Tests for both workflow behavior and agent composition live under [`tests/`](tests/).
 
-This repository separates specialist responsibilities, preserves shared traceable state, records evidence provenance and unknowns, surfaces conflicts, and requires human authority before consequential action.
+## Architecture
+
+```text
+Case input
+   ↓
+Governance Intake Agent
+   ↓
+Policy & Charter Agent
+   ↓
+Risk & Controls Agent
+   ↓
+Board Process Agent
+   ↓
+Evidence Auditor
+   ↓
+Governance Orchestrator / Human Authority Gate
+   ↓
+Traceable result
+```
+
+Each agent has an explicit responsibility and writes an inspectable artifact into shared run state. The orchestrator does not erase missing evidence, conflicts, or risks when an approval flag is supplied.
 
 ## Quick start
 
@@ -22,7 +42,7 @@ python -m src.run --example
 pytest -q
 ```
 
-The reference example is designed to run deterministically without a model API key.
+The reference example runs deterministically without a model API key.
 
 ## Output contract
 
