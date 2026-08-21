@@ -2,6 +2,27 @@
 
 Standalone multi-agent reference architecture for evidence-aware corporate governance preparation, board-process support, risk review, and decision traceability.
 
+## Complete repository structure
+
+```text
+.github/workflows/tests.yml     CI across supported Python versions
+src/agents.py                   specialist agent implementations and manifest
+src/state.py                    shared typed run state
+src/gates.py                    fail-closed human authority gate
+src/orchestrator.py             multi-agent coordination and canonical result
+src/system.py                   compatibility API
+evals/evaluator.py              reference evaluator
+examples/governance_case.json   reproducible offline fixture
+benchmarks/README.md            domain benchmark contract
+docs/ARCHITECTURE.md            architecture and workflow design
+tests/                          system, agent, and architecture tests
+SECURITY.md                     security and responsible-use policy
+CONTRIBUTING.md                 contribution standard
+CITATION.cff                    citation metadata
+CHANGELOG.md                    release history
+LICENSE                         MIT license
+```
+
 ## Agent team
 
 1. Governance Intake Agent
@@ -11,29 +32,7 @@ Standalone multi-agent reference architecture for evidence-aware corporate gover
 5. Evidence Auditor
 6. Governance Orchestrator
 
-The **actual specialist agent implementations live in [`src/agents.py`](src/agents.py)**. The orchestrated run state and human authority gate live in [`src/system.py`](src/system.py). Tests for both workflow behavior and agent composition live under [`tests/`](tests/).
-
-## Architecture
-
-```text
-Case input
-   ↓
-Governance Intake Agent
-   ↓
-Policy & Charter Agent
-   ↓
-Risk & Controls Agent
-   ↓
-Board Process Agent
-   ↓
-Evidence Auditor
-   ↓
-Governance Orchestrator / Human Authority Gate
-   ↓
-Traceable result
-```
-
-Each agent has an explicit responsibility and writes an inspectable artifact into shared run state. The orchestrator does not erase missing evidence, conflicts, or risks when an approval flag is supplied.
+The five specialists are executable roles. The Governance Orchestrator owns shared state, invokes the specialists, records the execution trace, and evaluates the human authority gate.
 
 ## Quick start
 
@@ -41,12 +40,6 @@ Each agent has an explicit responsibility and writes an inspectable artifact int
 python -m src.run --example
 pytest -q
 ```
-
-The reference example runs deterministically without a model API key.
-
-## Output contract
-
-Runs expose system/version identity, run ID, specialist analyses, evidence ledger, unresolved questions, conflicts, risks, recommendation, gate status, and execution trace.
 
 ## Authority boundary
 
@@ -63,6 +56,4 @@ Companion books by Mahsa Keikha:
 - https://a.co/d/0cbZnSMi
 - https://a.co/d/07HnRY7H
 
-## License
-
-MIT.
+MIT licensed.
