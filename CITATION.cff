@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this reference implementation, please cite it."
+title: "F30 Agentic Corporate Governance"
+type: software
+authors:
+  - family-names: Keikha
+    given-names: Mahsa
+version: 0.1.0
+date-released: 2026-08-20
+repository-code: "https://github.com/MahsaKeikha/agentic_corporate_governance"
+license: MIT
